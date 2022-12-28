@@ -8,7 +8,7 @@
 import Foundation
 
 
-internal final class APICharacter: APIService<MarvelResponseAPI> {
+internal final class APICharacters: APIService<ResponseAPI> {
     
     // MARK: - To override
     override func getCommnad() -> String {

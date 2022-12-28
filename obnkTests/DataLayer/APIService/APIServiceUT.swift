@@ -9,10 +9,10 @@ import XCTest
 
 final class APIServiceUT: XCTestCase {
 
-    var sut:APIService<MarvelResponseAPI>!
+    var sut:APIService<ResponseAPI>!
     
     override func setUpWithError() throws {
-        sut = APIService<MarvelResponseAPI>()
+        sut = APIService()
     }
     
     func testNoURLBuilt() {
@@ -31,9 +31,9 @@ final class APIServiceUT: XCTestCase {
     }
 }
 
-class APIServiceMock: APIService<MarvelResponseAPI> {
+class APIServiceMock: APIService<ResponseAPI> {
     
-    override func getURL(page: Int) -> URL? {
+    override func getURL(page: Int? = nil) -> URL? {
         return nil
     }
 }

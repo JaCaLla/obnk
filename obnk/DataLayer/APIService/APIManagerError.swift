@@ -14,6 +14,8 @@ enum APIManagerError: Error, Equatable {
     case fetching
     case jsonDecoding
     case noData
+    case noOK
+    case noAPICharacters
 
     var description: String {
         switch self {
@@ -22,6 +24,8 @@ enum APIManagerError: Error, Equatable {
         case .fetching: return "Error fetching data"
         case .jsonDecoding: return "Error with json decoding"
         case .noData: return "No data received"
+        case .noOK: return "Server response not OK"
+        case .noAPICharacters: return "No noAPICharacters service defined"
         }
     }
 

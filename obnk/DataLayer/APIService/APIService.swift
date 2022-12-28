@@ -23,26 +23,27 @@ open class APIService<T: Decodable> {
         self.urlSession = urlSession
     }
     
-    func fetch(page: Int, completion: @escaping (Result<T,Error>) -> Void) {
-        guard let url = getURL(page: 0) else {
+    func fetch(page: Int? = nil, completion: @escaping (Result<T,Error>) -> Void) {
+        guard let url = getURL(page: page) else {
             completion(.failure(APIManagerError.noURLBuilt))
             return
         }
-        urlSession.dataTask(with: url) { data, response, error in
-            if let _ = error {
-                completion(.failure(APIManagerError.fetching))
-                return
-            }
-            guard let data = data else {
-                completion(.failure(APIManagerError.noData))
-                return
-            }
-            do {
-                let decodedResponse = try JSONDecoder().decode(T.self, from: data)
-                completion(.success(decodedResponse))
-            } catch {
-                print("\(error)")
-                completion(.failure(APIManagerError.jsonDecoding))
+        urlSession.dataTask(with: url) { [weak self] data, response, error in
+            DispatchQueue.main.async {
+                if let _ = error {
+                    completion(.failure(APIManagerError.fetching))
+                    return
+                }
+                guard let data = data else {
+                    completion(.failure(APIManagerError.noData))
+                    return
+                }
+                do {
+                    let decodedResponse = try JSONDecoder().decode(T.self, from: data)
+                    completion(.success(decodedResponse))
+                } catch {
+                    completion(.failure(APIManagerError.jsonDecoding))
+                }
             }
         }.resume()
     }
@@ -54,7 +55,7 @@ open class APIService<T: Decodable> {
     
     
     // MARK: - Private/Internal
-    internal func getURL(page: Int) -> URL? {
+    internal func getURL(page: Int? = nil) -> URL? {
         let command = getCommnad()
         guard !command.isEmpty else { return nil }
         var components = URLComponents()
@@ -64,10 +65,13 @@ open class APIService<T: Decodable> {
         components.queryItems = [
             URLQueryItem(name: "ts", value: ts),
             URLQueryItem(name: "apikey", value: apiKey),
-            URLQueryItem(name: "hash", value:  "\(ts)\(privateKey)\(apiKey)".md5),
-            URLQueryItem(name: "offset", value: "\(itemsPerPage * page)"),
-            URLQueryItem(name: "limit", value: "\(itemsPerPage)"),
+            URLQueryItem(name: "hash", value:  "\(ts)\(privateKey)\(apiKey)".md5)
         ]
+        if let page = page {
+            components.queryItems?.append(URLQueryItem(name: "offset", value: "\(itemsPerPage * page)"))
+            components.queryItems?.append(URLQueryItem(name: "limit", value: "\(itemsPerPage)"))
+        }
+        
         return components.url
     }
 }
