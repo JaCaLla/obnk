@@ -47,7 +47,7 @@ final class DataManagerUT: XCTestCase {
         }
         XCTAssertEqual(dataManager.currentPage, 0)
         // When
-        sut.fetch { [weak self] result in
+        sut.fetch { result in
             // Then
             XCTAssertEqual(dataManager.currentPage, 1)
             expectation.fulfill()
@@ -64,9 +64,7 @@ final class DataManagerUT: XCTestCase {
         // When
         sut.fetch { result in
             // Then
-            if case let .success(characters) = result,
-               let characters = characters as? [Character] {
-               // XCTAssertEqual(error, APIManagerError.noOK)
+            if case let .success(characters) = result {
                 XCTAssertEqual(characters.count, 20)
                 XCTAssertEqual(characters[0].id, 1011334)
                 XCTAssertEqual(characters[0].name, "3-D Man")
