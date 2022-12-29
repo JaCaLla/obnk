@@ -35,6 +35,18 @@ Data layer is responsible for fetching data from any source (Network, DDBB, File
 ##### APIService
 Inside datalayer exists a bunch of components dedicated to handle data depending on its source, for instance, APIService is responsible for fetching data from a REST service you can find its implementation under __DataLayer/APIService__ XCode project folder. 
 
+# UIKit vs SwiftUI
+
+__pending__
+
+# Error handling
+
+__pending__
+
+forcing via unint test error handling
+How the user is presented to user.
+
+
 
 # External libreries
 
