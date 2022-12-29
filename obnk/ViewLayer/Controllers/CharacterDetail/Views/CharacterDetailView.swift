@@ -7,18 +7,22 @@
 
 import UIKit
 
-class CharacterDetailView: UITableView {
+final class CharacterDetailView: UITableView {
 
+    // MARK: - Private attributes
     private var presenter: CharacterDetailPresenterProtocol = CharacterDetailPresenter()
-    weak var charactersListViewDelegate: CharactersListViewProtocol?
-    var tableDataSource: UserTableViewDiffibleDataSource!
+    private var tableDataSource: UserTableViewDiffibleDataSource!
 
-    // MARK: - Lifecycle
+    // MARK: - Delegate
+    weak var charactersListViewDelegate: CharactersListViewProtocol?
+
+    // MARK: - Lifecycle/Overridden
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setupView()
     }
 
+    // MARK: - Public helpers
     func set(presenter: CharacterDetailPresenterProtocol) {
         self.presenter = presenter
         refreshView()
@@ -30,7 +34,7 @@ class CharacterDetailView: UITableView {
             imageHeader.setImage(from: url)
             imageHeader.contentMode = .scaleAspectFit
         }
-        let header = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.width))
+        let header = UIView(frame: imageHeader.frame)
         header.addSubview(imageHeader)
         self.tableHeaderView = header
     }
@@ -40,7 +44,7 @@ class CharacterDetailView: UITableView {
         setUpTableDataSource()
     }
 
-    func setUpTableDataSource() {
+    private func setUpTableDataSource() {
         tableDataSource = UserTableViewDiffibleDataSource(tableView: self,
                                                           cellProvider: { [weak self] tableView, indexPath, contact in
                                                               return self?.presenter.tableView(tableView, cellForRowAt: indexPath)
@@ -48,7 +52,7 @@ class CharacterDetailView: UITableView {
         updateSnapshot()
     }
 
-    func updateSnapshot(animated: Bool = false) {
+    private func updateSnapshot(animated: Bool = false) {
         var snapshot = NSDiffableDataSourceSnapshot<CharacterDetailViewSection, String>()
         snapshot.appendSections(CharacterDetailViewSection.allCases)
         let comics = presenter.getTexts(for: .comics)

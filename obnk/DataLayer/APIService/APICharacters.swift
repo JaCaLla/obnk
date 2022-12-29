@@ -7,10 +7,9 @@
 
 import Foundation
 
-
 internal final class APICharacters: APIService<ResponseAPI> {
     
-    // MARK: - To override
+    // MARK: - Overridden
     override func getCommnad() -> String {
         return "characters"
     }

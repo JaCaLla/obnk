@@ -28,10 +28,4 @@ enum APIManagerError: Error, Equatable {
         case .noAPICharacters: return "No noAPICharacters service defined"
         }
     }
-
-    // MARK: - Equatable
-    static func == (lhs: APIManagerError, rhs: APIManagerError) -> Bool {
-        lhs.description == rhs.description
-    }
-
 }

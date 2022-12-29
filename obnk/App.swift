@@ -5,7 +5,7 @@
 //  Created by Javier Calatrava on 28/12/22.
 //
 
-import Foundation
+import UIKit
 
 struct App {
     var dataManager: DataManagerProtocol
@@ -15,4 +15,5 @@ struct App {
     }
 }
 
+let imageCache = NSCache<NSString, UIImage>()
 var currentApp = App(dataManager: DataManager())

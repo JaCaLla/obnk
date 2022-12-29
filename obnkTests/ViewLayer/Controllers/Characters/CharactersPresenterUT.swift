@@ -49,34 +49,24 @@ final class CharactersPresenterUT: XCTestCase {
         wait(for: [expectation], timeout: 2.0)
     }
     
-//    func testNumberOfRowsInSection() {
-//
-//        let expectation = XCTestExpectation()
-//        XCTAssertEqual(sut.tableView(UITableView(), numberOfRowsInSection: 0), 0)
-//
-//        // When
-//        sut.fetch {[weak self] result in
-//            // Then
-//            XCTAssertEqual(self?.sut.tableView(UITableView(), numberOfRowsInSection: 0), 20)
-//            self?.sut.fetch {[weak self] result in
-//                // Then
-//                XCTAssertEqual(self?.sut.tableView(UITableView(), numberOfRowsInSection: 0), 40)
-//                self?.sut.fetch {[weak self] result in
-//                    // Then
-//                    XCTAssertEqual(self?.sut.tableView(UITableView(), numberOfRowsInSection: 0), 60)
-//                    expectation.fulfill()
-//                }
-//            }
-//        }
-//        wait(for: [expectation], timeout: 5.0)
-//    }
-    // func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    func testGetCharacters() {
+        let expectation = XCTestExpectation()
+        // Given
+        XCTAssertEqual(sut.getCharacters().count, 0)
+        
+        // When
+        sut.fetch {[weak self] result in
+            // Then
+            XCTAssertEqual(self?.sut.getCharacters().count, 20)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 2.0)
+    }
+    
     func testHasToFetch() {
   
         let expectation = XCTestExpectation()
-       // XCTAssertEqual(sut.tableView(UITableView(), numberOfRowsInSection: 0), 0)
         XCTAssertEqual(sut.hasToRequestFetch(indexPath: IndexPath(row: 0, section: 0)), true)
-        
         
         // When
         sut.fetch {[weak self] result in
@@ -89,45 +79,8 @@ final class CharactersPresenterUT: XCTestCase {
         }
         wait(for: [expectation], timeout: 5.0)
     }
-    
-//    func testCellForRowAt() {
-//        let expectation = XCTestExpectation()
-//        // Given
-//        let charactersListView = CharactersListView(frame: .zero)
-//        charactersListView.register(CharactersListViewCell.self, forCellReuseIdentifier: "CharactersListViewCell")
-//        // When
-//        sut.fetch {[weak self] result in
-//            // Then
-//            let cell = self?.sut.tableView(charactersListView, cellForRowAt: IndexPath(item: 0, section: 0))
-//            guard cell is CharactersListViewCell else {
-//                XCTFail()
-//                expectation.fulfill()
-//                return
-//            }
-//            expectation.fulfill()
-//        }
-//        wait(for: [expectation], timeout: 2.0)
-//    }
-    
-//    func testCellForRowAtWhenCellIsNotRegistered() {
-//        let expectation = XCTestExpectation()
-//        // Given
-//        let charactersListView = CharactersListView(frame: .zero)
-//        // When
-//        sut.fetch {[weak self] result in
-//            // Then
-//            let cell = self?.sut.tableView(charactersListView, cellForRowAt: IndexPath(item: 0, section: 0))
-//            guard cell is CharactersListViewCell else {
-//                expectation.fulfill()
-//                return
-//            }
-//            XCTFail()
-//            expectation.fulfill()
-//        }
-//        wait(for: [expectation], timeout: 20.0)
-//    }
 }
-
+// MARK: - Mock
 final class CharactersInteractorMock: CharactersInteractorProtocol {
     
     var result: Result<[Character],Error> = .success(.sample)

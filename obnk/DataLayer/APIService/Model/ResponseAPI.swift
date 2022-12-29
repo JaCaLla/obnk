@@ -7,11 +7,12 @@
 
 import Foundation
 
+// MARK: - ResponseAPI
 struct ResponseAPI: Codable {
     let status: String
     let data: DataAPI
 }
-
+// MARK: - DataAPI
 struct DataAPI: Codable {
     let offset: Int
     let limit: Int
@@ -19,14 +20,14 @@ struct DataAPI: Codable {
     let count: Int
     let results: [CharacterAPI]
 }
-
+// MARK: - CharacterAPI
 struct CharacterAPI: Codable {
     let id: Int
     let name: String
     let thumbnail: ThumbnailAPI
     let comics: ComicsAPI
 }
-
+// MARK: - ThumbnailAPI
 struct ThumbnailAPI: Codable  {
     let path: String
     let ext: String
@@ -36,15 +37,15 @@ struct ThumbnailAPI: Codable  {
         case ext = "extension"
     }
 }
-
+// MARK: - ComicsAPI
 struct ComicsAPI: Codable {
     let items: [ComicItemAPI]
 }
-
+// MARK: - ComicItemAPI
 struct ComicItemAPI: Codable {
     let name: String
 }
-
+// MARK: - Sample data
 extension ResponseAPI {
     static let sample = ResponseAPI(status: "Ok", data: .sample)
     static let sampleNotOK = ResponseAPI(status: "notOK", data: .sample)

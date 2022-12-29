@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - Character
 struct Character: Codable, Equatable, Hashable {
     let id: Int
     let name: String
@@ -28,10 +29,11 @@ struct Character: Codable, Equatable, Hashable {
     }
     
     func hash(into hasher: inout Hasher) {
-        
+        // Required for NSDiffableDataSource
     }
 }
 
+// MARK: - Thumbnail
 struct Thumbnail: Codable, Equatable  {
     let url: String
     
@@ -49,6 +51,7 @@ struct Thumbnail: Codable, Equatable  {
     }
 }
 
+// MARK: - ComicItem
 struct ComicItem: Codable, Equatable {
     let name: String
     

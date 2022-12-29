@@ -63,7 +63,7 @@ final class CharactersInteractorUT: XCTestCase {
         wait(for: [expectation], timeout: 2.0)
     }
 }
-
+// MARK: - Mock
 final class DataManagerMock: DataManagerProtocol {
     var result: Result<[Character], Error> = .success(.sample)
     

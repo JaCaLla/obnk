@@ -7,12 +7,13 @@
 
 import UIKit
 
-class CharacterDetailViewController: UIViewController {
+final class CharacterDetailViewController: UIViewController {
 
     // MARK: - @IBOutlet
     @IBOutlet weak var characterDetailView: CharacterDetailView!
 
-    var presenter: CharacterDetailPresenterProtocol = CharacterDetailPresenter()
+    // MARK: - Private attributes
+    private var presenter: CharacterDetailPresenterProtocol = CharacterDetailPresenter()
     
     // MARK: - Constructor/Initializer
     public static func instantiate(presenter: CharacterDetailPresenterProtocol = CharacterDetailPresenter()) -> CharacterDetailViewController {
@@ -21,16 +22,14 @@ class CharacterDetailViewController: UIViewController {
             return CharacterDetailViewController()
         }
         characterDetailViewController.presenter = presenter
-       // presenter.set(routesVC: routesVC)
         return characterDetailViewController
     }
 
-    // MARK: - Lifecycle
+    // MARK: - Lifecycle/Overridden
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupViewController()
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,10 +37,9 @@ class CharacterDetailViewController: UIViewController {
         characterDetailView.refreshView()
     }
     
-    
+    // MARK: - Private methods
     private func setupViewController() {
         self.title = presenter.getTitle()
         characterDetailView.set(presenter: presenter)
-       // self.charactersListView.charactersListViewDelegate = self
     }
 }

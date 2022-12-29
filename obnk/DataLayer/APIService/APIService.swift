@@ -9,26 +9,27 @@ import Foundation
 
 open class APIService<T: Decodable> {
     
-    let ts = "1"
-    let apiKey = "c6293688547662bf5d1cbdb01b7ef97a"
-    let privateKey = "e1a8b5b725360e9e7b3ec1ca7a282e084b83d156"
-    let scheme = "https"
-    let host = "gateway.marvel.com"
-    let itemsPerPage = 20
-    
+    // MARK: - Private Attributes
+    private let ts = "1"
+    private let apiKey = "c6293688547662bf5d1cbdb01b7ef97a"
+    private let privateKey = "e1a8b5b725360e9e7b3ec1ca7a282e084b83d156"
+    private let scheme = "https"
+    private let host = "gateway.marvel.com"
+    private let itemsPerPage = 20
     private let urlSession: URLSession
     
-    
+    // MARK: - Constructor/Initializer
     init(urlSession: URLSession = .shared) {
         self.urlSession = urlSession
     }
     
+    // MARK: - Public methods
     func fetch(page: Int? = nil, completion: @escaping (Result<T,Error>) -> Void) {
         guard let url = getURL(page: page) else {
             completion(.failure(APIManagerError.noURLBuilt))
             return
         }
-        urlSession.dataTask(with: url) { [weak self] data, response, error in
+        urlSession.dataTask(with: url) { data, response, error in
             DispatchQueue.main.async {
                 if let _ = error {
                     completion(.failure(APIManagerError.fetching))
@@ -48,8 +49,8 @@ open class APIService<T: Decodable> {
         }.resume()
     }
     
-    // MARK: - To override
-    func getCommnad() -> String {
+    // MARK: - To Override
+    open func getCommnad() -> String {
         return ""
     }
     

@@ -13,11 +13,13 @@ final class CharactersCoordinator {
     internal var navigationController = UINavigationController()
     private let characterDetailCoordinator = CharacterDetailCoordinator()
     
+    // MARK: - Public helpers
     func start(navitagionController: UINavigationController) {
         self.navigationController = navitagionController
         presentCharacterList()
     }
     
+    // MARK: - Private methods
     private func presentCharacterList() {
         let interactor = CharactersInteractor()
         let presenter = CharactersPresenter(interactor: interactor)

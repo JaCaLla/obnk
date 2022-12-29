@@ -30,16 +30,15 @@ final class APIServiceUT: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 }
-
-class APIServiceMock: APIService<ResponseAPI> {
+// MARK: - Mock
+final class APIServiceMock: APIService<ResponseAPI> {
     
     override func getURL(page: Int? = nil) -> URL? {
         return nil
     }
 }
 
-
-class URLSessionMock: URLSession {
+final class URLSessionMock: URLSession {
     
     var data: Data?
     var urlResponse: URLResponse?
@@ -55,7 +54,7 @@ class URLSessionMock: URLSession {
     }
 }
 
-class URLSessionDataTaskMock: URLSessionDataTask {
+final class URLSessionDataTaskMock: URLSessionDataTask {
     
     private let closure: () -> Void
     
@@ -64,8 +63,7 @@ class URLSessionDataTaskMock: URLSessionDataTask {
     init(closure: @escaping () -> Void) {
         self.closure = closure
     }
-    // We override the 'resume' method and simply call our closure
-    // instead of actually resuming any task.
+
     override func resume() {
         resumeWasCalled = true
         closure()

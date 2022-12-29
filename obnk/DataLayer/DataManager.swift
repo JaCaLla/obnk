@@ -7,41 +7,36 @@
 
 import Foundation
 
+// MARK: - Protocol
 protocol DataManagerProtocol {
     func fetch(completion: @escaping (Result<[Character],Error>) -> Void)
     func reset()
 }
 
+// MARK: - DataManager
 final class DataManager {
    
 
     // MARK: - Private attributes
-    var currentPage: Int = 0
-    var apiCharcters: APIService<ResponseAPI>?
-    var charactersFetched: [Character] = []
+    internal var currentPage: Int = 0
+    internal var apiCharcters: APIService<ResponseAPI>?
+    internal var charactersFetched: [Character] = []
 
-    
+    // MARK: - Constructor/Initializer
     init(apiCharcters: APIService<ResponseAPI>? = APICharacters()) {
         self.apiCharcters = apiCharcters
     }
 }
 
+// MARK: - DataManagerProtocol
 extension DataManager: DataManagerProtocol {
     func fetch(completion: @escaping (Result<[Character],Error>) -> Void) {
         guard let apiCharcters = apiCharcters else {
             completion(.failure(APIManagerError.noAPICharacters))
             return
         }
-//        if isFetchingCharacters {
-//            completion(.failure(APIManagerError.busy))
-//            return
-//        }
-//        isFetchingCharacters = true
+
         apiCharcters.fetch(page: currentPage) {[weak self] result in
-//            if self == nil {
-//                print("premio")
-//            }
-          //  self?.isFetchingCharacters = false
             switch result {
             case .success (let responseAPI):
                 guard responseAPI.status == "Ok" else {

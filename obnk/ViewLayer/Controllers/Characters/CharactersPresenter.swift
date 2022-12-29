@@ -8,41 +8,31 @@
 import Foundation
 import UIKit
 
+// MARK: - Protocol
 protocol CharactersPresenterProtocol {
     func fetch(completion: @escaping (Result<[Character],Error>) -> Void)
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     func hasToRequestFetch(indexPath: IndexPath) -> Bool
     func getCharacters() -> [Character]
 }
 
+// MARK: - CharactersPresenter
 final class CharactersPresenter {
     
+    // MARK: - Private attributes
     private let interactor: CharactersInteractorProtocol
     
+    // MARK: - Constructor/Initializer
     init(interactor: CharactersInteractorProtocol = CharactersInteractor()) {
         self.interactor = interactor
     }
 }
 
+// MARK: - CharactersPresenterProtocol
 extension CharactersPresenter: CharactersPresenterProtocol {
+    
     func fetch(completion: @escaping (Result<[Character],Error>) -> Void) {
         interactor.fetch(completion: completion)
     }
-    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        interactor.getCharacters().count
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let charactersListViewCell: CharactersListViewCell = tableView.dequeueReusableCell(withIdentifier: "CharactersListViewCell") as? CharactersListViewCell else { return UITableViewCell() }
-//
-//        let characters = interactor.getCharacters()
-//        let character = characters[indexPath.row]
-//        charactersListViewCell.set(character: character)
-//
-//        return charactersListViewCell
-//    }
     
     func hasToRequestFetch(indexPath: IndexPath) -> Bool {
         let characters = interactor.getCharacters()

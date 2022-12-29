@@ -60,8 +60,13 @@ final class CharacterDetailPresenterUT: XCTestCase {
         let cell = sut.tableView(characterDetailView, cellForRowAt: IndexPath(item: 0, section: 1))
         XCTAssertNil(cell.textLabel?.text)
     }
+    
+    func testGetTexts() {
+        // Given, When, Then
+        XCTAssertEqual(sut.getTexts(for: .comics), ["Avengers: The Initiative (2007) #14", "Avengers: The Initiative (2007) #14 (SPOTLIGHT VARIANT)", "Avengers: The Initiative (2007) #15", "Avengers: The Initiative (2007) #16", "Avengers: The Initiative (2007) #17"])
+    }
 }
-
+// MARK: - Mock
 final class CharaterDetailInteractorMock: CharacterDetailInteractorProtocol {
     func getCharacter() -> obnk.Character {
             .sample

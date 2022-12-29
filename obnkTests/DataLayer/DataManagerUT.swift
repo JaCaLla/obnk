@@ -137,7 +137,7 @@ final class DataManagerUT: XCTestCase {
     }
 }
 
-
+// MARK: - Mock
 final class APICharactersMock: APIService<ResponseAPI> {
 
     var result: Result<ResponseAPI, Error> = .success(.sampleNotOK)

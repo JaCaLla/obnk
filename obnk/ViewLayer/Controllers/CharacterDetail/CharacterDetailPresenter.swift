@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - CharacterDetailViewSection
 enum CharacterDetailViewSection: CaseIterable {
     case comics
     
@@ -23,13 +24,20 @@ enum CharacterDetailViewSection: CaseIterable {
         }
     }
     
+    func getTexts(interactor: CharacterDetailInteractorProtocol) -> [String] {
+        switch self {
+        case .comics: return interactor.getCharacter().comics.map({$0.name})
+        }
+    }
+    
     init?(section: Int) {
         guard let type = CharacterDetailViewSection.allCases.first(where: { $0.section == section }) else { return nil }
         self = type
     }
 }
 
-protocol CharacterDetailPresenterProtocol{
+// MARK: - Protocol
+protocol CharacterDetailPresenterProtocol {
     func getTitle() -> String
     func getImageURL() -> URL?
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -37,10 +45,13 @@ protocol CharacterDetailPresenterProtocol{
     func getTexts(for userSection: CharacterDetailViewSection) -> [String]
 }
 
+// MARK: - CharacterDetailPresenter
 final class CharacterDetailPresenter {
     
+    // MARK: - Private attributes
     private let interactor: CharacterDetailInteractorProtocol
     
+    // MARK: - Constructor/Initializer
     init(interactor: CharacterDetailInteractorProtocol = CharacterDetailInteractor(character: .sample)) {
         self.interactor = interactor
     }
@@ -77,10 +88,6 @@ extension CharacterDetailPresenter: CharacterDetailPresenterProtocol {
     }
     
     func getTexts(for userSection: CharacterDetailViewSection) -> [String] {
-        if userSection == .comics {
-            return interactor.getCharacter().comics.map({$0.name})
-        } else {
-            return []
-        }
+        userSection.getTexts(interactor: interactor)
     }
 }

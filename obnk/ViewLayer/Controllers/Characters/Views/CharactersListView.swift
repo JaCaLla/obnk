@@ -7,25 +7,30 @@
 
 import UIKit
 
+// MARK: - Protocol
 protocol CharactersListViewProtocol: AnyObject {
     func fetch()
     func showDetail(character: Character)
 }
 
+// MARK: - CharactersListView
 class CharactersListView: UITableView {
 
+    // MARK: - Private attributes
     private var characters: [Character] = []
     private var presenter: CharactersPresenterProtocol = CharactersPresenter()
+    private var tableDataSource: UITableViewDiffableDataSource<UITableView.Section, Character>!
 
+    // MARK: - Delegate
     weak var charactersListViewDelegate: CharactersListViewProtocol?
 
-    var tableDataSource: UITableViewDiffableDataSource<UITableView.Section, Character>!
-
+   // MARK: - Lifecycle/Overridden
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setupView()
     }
 
+    // MARK: - Public methods
     func set(characters: [Character]) {
         self.characters = characters
         updateSnapshot()
@@ -41,7 +46,7 @@ class CharactersListView: UITableView {
         self.delegate = self
     }
 
-    func setUpTableDataSource() {
+    private func setUpTableDataSource() {
         tableDataSource = UITableViewDiffableDataSource<UITableView.Section, Character>(tableView: self,
                                                                                         cellProvider: { [weak self] tableView, indexPath, contact in
 
@@ -68,20 +73,6 @@ class CharactersListView: UITableView {
     }
 }
 
-// MARK: - UITableViewDataSource
-//extension CharactersListView: UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        presenter.tableView(tableView, numberOfRowsInSection: section)
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if presenter.hasToRequestFetch(indexPath: indexPath) {
-//            charactersListViewDelegate?.fetch()
-//        }
-//        return presenter.tableView(tableView, cellForRowAt: indexPath)
-//    }
-//}
-
 // MARK: - UITableViewDelegate
 extension CharactersListView: UITableViewDelegate {
 
@@ -91,6 +82,7 @@ extension CharactersListView: UITableViewDelegate {
     }
 }
 
+// MARK: - Extension
 extension UITableView {
     enum Section {
         case main
