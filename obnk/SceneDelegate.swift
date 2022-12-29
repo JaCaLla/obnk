@@ -29,6 +29,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        guard !Thread.current.isRunningXCTest else {
+            // Look out! regular app lifecycle execution collides with unit test
+            return
+        }
+        MainFlowCoordinator.shared.start()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
