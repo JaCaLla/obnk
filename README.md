@@ -13,7 +13,7 @@ _An architecture is a way of oranizing code, in a way that would be easier to un
 Architecture emplyed in this app is the classical 3 layers (View, Domain and Data). 
 
 ## View Layer
-View layer is where are implemented the app UI and its presentation logic. Each scene (screen) is implemented by a stack of three components: View, Presenter, Interactor and Coordinator.
+View layer is where are implemented the app UI and its presentation logic. Each scene (screen), under __ViewLayer/Contollers__, is implemented by a stack of three components: View, Presenter, Interactor and Coordinator.
 
 ![image](https://user-images.githubusercontent.com/4647295/209935891-e61bc712-ab3d-4191-9d18-712a5248464d.png)
 
@@ -27,6 +27,8 @@ View layer is where are implemented the app UI and its presentation logic. Each 
 
 
 ## Domain Layer
+Domain layer is quite hard to deffine. It would be what is neither View nor Data layer component. For instance, if the app had implmented a Sequencer it would be placed in that folder. A Sequencer is a pattern that implements the app start up sequence, by using NSOperations.
+
 
 ## Data Layer
 Data layer is responsible for fetching data from any source (Network, DDBB, Files, UserDefaults, Keychain, ...), outside of this layer, nobody know the origin of data. This layer is implemented in XCode project folder called __DataLayer__
@@ -34,4 +36,21 @@ Data layer is responsible for fetching data from any source (Network, DDBB, File
 Inside datalayer exists a bunch of components dedicated to handle data depending on its source, for instance, APIService is responsible for fetching data from a REST service you can find its implementation under __DataLayer/APIService__ XCode project folder. 
 
 
+# External libreries
 
+No external library has been used, based on my experience on legacy projects and yearly iOS new updates, I prefer as much as I can not depend on them. Beacuse, even when they are very usefull today it could be a stone in the app bag in a few years (e.g. Mantle, Material, Argo, ...). If the use of a library can be bypassed by implementing an extension, the extension would be my first choice. _That means that I do not use external libraries? NO.  
+
+There are times that you can not avoid them, for instance, if you want to implement a calentar month view. It has no sense to implement that, you could yous a library such as JTAppleCalendar.
+
+There are also others with a lot of years of maintenance and with a high reputation, such as Realm or Firebase among others, that are very usefulls, and would not dude in included them when the project requires.
+
+
+# Quality
+
+As much as I can, I try to test every line of code that I write by implementing a unit test complment in a mirrored file structucture under __Test__ folder.
+
+![image](https://user-images.githubusercontent.com/4647295/209940633-78c0b6a6-f898-44cb-88b9-9291aa7f4467.png)
+
+Basically I implement the unit tests by using dependency injection and injecting mock compoments for forcing the desired test objective.
+
+**View** components are the very least components tested, due its implementation are very hard to test. The architecture implemented helps to minimize this problem by moving all the presentation logic to **Presenter** component which is fully tested.
