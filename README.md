@@ -38,11 +38,13 @@ Inside datalayer exists a bunch of components dedicated to handle data depending
 
 # External libreries
 
-No external library has been used, based on my experience on legacy projects and yearly iOS new updates, I prefer as much as I can not depend on them. Beacuse, even when they are very usefull today it could be a stone in the app bag in a few years (e.g. Mantle, Material, Argo, ...). If the use of a library can be bypassed by implementing an extension, the extension would be my first choice. _That means that I do not use external libraries? NO.  
+No external library has been used, based on my experience on legacy projects and yearly iOS new updates. I prefer, as much as I can, not depend on them. Beacuse, even when they are very usefull today, they could be a stone in the app bag in a few years (e.g. Mantle, Material, Argo, ...). If the use of a library can be bypassed by implementing an extension, the extension would be my first choice. 
+
+_That means that I do not use external libraries? NO._  
 
 There are times that you can not avoid them, for instance, if you want to implement a calentar month view. It has no sense to implement that, you could yous a library such as JTAppleCalendar.
 
-There are also others with a lot of years of maintenance and with a high reputation, such as Realm or Firebase among others, that are very usefulls, and would not dude in included them when the project requires.
+There are also others, with a lot of years of maintenance and with a high reputation, such as Realm or Firebase among others, that are very usefulls, and I would not dude in included them when the project requires.
 
 
 # Quality
@@ -54,3 +56,5 @@ As much as I can, I try to test every line of code that I write by implementing 
 Basically I implement the unit tests by using dependency injection and injecting mock compoments for forcing the desired test objective.
 
 **View** components are the very least components tested, due its implementation are very hard to test. The architecture implemented helps to minimize this problem by moving all the presentation logic to **Presenter** component which is fully tested.
+
+
