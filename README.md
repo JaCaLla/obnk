@@ -37,15 +37,47 @@ Inside datalayer exists a bunch of components dedicated to handle data depending
 
 # UIKit vs SwiftUI
 
-__pending__
+I have respected the requirement of not working with SwiftUI, even thuogh nowadays is possible to start to work with it in real critical environments. SwiftUI was dessigned to work with UIKit, with UIHostingViewController you can encapsulate a SwiftUI view and replace presenter by a ViewModel. In SwiftUI you save up a lot of time when you are implementing the view, is very usefull when you have to make view adjustments with UX/UI team.
+
+On my opition scene navigation is still not mature enough for being integrated in critical app such as banking or sales channels. 
+
+SwiftUI starts to be the present and is the future, so as developers we have to be ready.
 
 # Error handling
 
-__pending__
+Mainly the errors handled by the app are those one related with networking issues:
 
-forcing via unint test error handling
-How the user is presented to user.
+```
+enum APIManagerError: Error, Equatable {
 
+    case noURLBuilt
+    case busy
+    case fetching
+    case jsonDecoding
+    case noData
+    case noOK
+    case noAPICharacters
+
+    var description: String {
+        switch self {
+        case .noURLBuilt: return "Not possible build url"
+        case .busy: return "Call is on process already"
+        case .fetching: return "Error fetching data"
+        case .jsonDecoding: return "Error with json decoding"
+        case .noData: return "No data received"
+        case .noOK: return "Server response not OK"
+        case .noAPICharacters: return "No noAPICharacters service defined"
+        }
+    }
+}
+```
+All these error have been validated by mocking URLSession.
+
+From App user point of view, he/she will see an error like this:
+
+![image](https://user-images.githubusercontent.com/4647295/209968493-fc4dbff0-6d59-447a-9b65-daf53cc24cb2.png)
+
+This case is when you turn off all your internet connections.
 
 
 # External libreries
