@@ -48,19 +48,10 @@
 		5EDB2ED7295B39BC00C07B78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EDB2ED5295B39BC00C07B78 /* Main.storyboard */; };
 		5EDB2ED9295B39BD00C07B78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EDB2ED8295B39BD00C07B78 /* Assets.xcassets */; };
 		5EDB2EDC295B39BD00C07B78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EDB2EDA295B39BD00C07B78 /* LaunchScreen.storyboard */; };
-		5EDB2EF1295B39BD00C07B78 /* obnkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDB2EF0295B39BD00C07B78 /* obnkUITests.swift */; };
-		5EDB2EF3295B39BD00C07B78 /* obnkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDB2EF2295B39BD00C07B78 /* obnkUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		5EDB2EE3295B39BD00C07B78 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5EDB2EC4295B39BC00C07B78 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5EDB2ECB295B39BC00C07B78;
-			remoteInfo = obnk;
-		};
-		5EDB2EED295B39BD00C07B78 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5EDB2EC4295B39BC00C07B78 /* Project object */;
 			proxyType = 1;
@@ -114,7 +105,6 @@
 		5EDB2EDB295B39BD00C07B78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5EDB2EDD295B39BD00C07B78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EDB2EE2295B39BD00C07B78 /* obnkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = obnkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5EDB2EEC295B39BD00C07B78 /* obnkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = obnkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EDB2EF0295B39BD00C07B78 /* obnkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = obnkUITests.swift; sourceTree = "<group>"; };
 		5EDB2EF2295B39BD00C07B78 /* obnkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = obnkUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,13 +118,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5EDB2EDF295B39BD00C07B78 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5EDB2EE9295B39BD00C07B78 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -380,7 +363,6 @@
 			children = (
 				5EDB2ECC295B39BC00C07B78 /* obnk.app */,
 				5EDB2EE2295B39BD00C07B78 /* obnkTests.xctest */,
-				5EDB2EEC295B39BD00C07B78 /* obnkUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -461,24 +443,6 @@
 			productReference = 5EDB2EE2295B39BD00C07B78 /* obnkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		5EDB2EEB295B39BD00C07B78 /* obnkUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5EDB2EFC295B39BD00C07B78 /* Build configuration list for PBXNativeTarget "obnkUITests" */;
-			buildPhases = (
-				5EDB2EE8295B39BD00C07B78 /* Sources */,
-				5EDB2EE9295B39BD00C07B78 /* Frameworks */,
-				5EDB2EEA295B39BD00C07B78 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5EDB2EEE295B39BD00C07B78 /* PBXTargetDependency */,
-			);
-			name = obnkUITests;
-			productName = obnkUITests;
-			productReference = 5EDB2EEC295B39BD00C07B78 /* obnkUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -493,10 +457,6 @@
 						CreatedOnToolsVersion = 14.2;
 					};
 					5EDB2EE1295B39BD00C07B78 = {
-						CreatedOnToolsVersion = 14.2;
-						TestTargetID = 5EDB2ECB295B39BC00C07B78;
-					};
-					5EDB2EEB295B39BD00C07B78 = {
 						CreatedOnToolsVersion = 14.2;
 						TestTargetID = 5EDB2ECB295B39BC00C07B78;
 					};
@@ -519,7 +479,6 @@
 			targets = (
 				5EDB2ECB295B39BC00C07B78 /* obnk */,
 				5EDB2EE1295B39BD00C07B78 /* obnkTests */,
-				5EDB2EEB295B39BD00C07B78 /* obnkUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -539,13 +498,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5EDB2EE0295B39BD00C07B78 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5EDB2EEA295B39BD00C07B78 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -604,15 +556,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5EDB2EE8295B39BD00C07B78 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5EDB2EF3295B39BD00C07B78 /* obnkUITestsLaunchTests.swift in Sources */,
-				5EDB2EF1295B39BD00C07B78 /* obnkUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -620,11 +563,6 @@
 			isa = PBXTargetDependency;
 			target = 5EDB2ECB295B39BC00C07B78 /* obnk */;
 			targetProxy = 5EDB2EE3295B39BD00C07B78 /* PBXContainerItemProxy */;
-		};
-		5EDB2EEE295B39BD00C07B78 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5EDB2ECB295B39BC00C07B78 /* obnk */;
-			targetProxy = 5EDB2EED295B39BD00C07B78 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -858,42 +796,6 @@
 			};
 			name = Release;
 		};
-		5EDB2EFD295B39BD00C07B78 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7ZPDPWR8XU;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = jca.obnkUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = obnk;
-			};
-			name = Debug;
-		};
-		5EDB2EFE295B39BD00C07B78 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7ZPDPWR8XU;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = jca.obnkUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = obnk;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -920,15 +822,6 @@
 			buildConfigurations = (
 				5EDB2EFA295B39BD00C07B78 /* Debug */,
 				5EDB2EFB295B39BD00C07B78 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5EDB2EFC295B39BD00C07B78 /* Build configuration list for PBXNativeTarget "obnkUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5EDB2EFD295B39BD00C07B78 /* Debug */,
-				5EDB2EFE295B39BD00C07B78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
